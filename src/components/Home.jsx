@@ -1,46 +1,58 @@
 // src/components/Home.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// Componente Home que muestra las categorías de especialidades
 function Home() {
+  const [technicians, setTechnicians] = useState([]);
+
+  useEffect(() => {
+    const storedTechnicians = JSON.parse(localStorage.getItem('technicians')) || [];
+    setTechnicians(storedTechnicians);
+  }, []);
+
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h2>Especialidades disponibles</h2>
-      
-      {/* Tarjetas con las especialidades */}
+      <h1>Bienvenidos a OficiosYA</h1>
+      <p>Encuentra al mejor técnico para tu servicio.</p>
+
+      {/* Botones para registrar cliente o técnico */}
       <div>
-        {['Electricista', 'Sanitario', 'Cerrajero', 'Refrigeración'].map((specialty) => (
-          <div key={specialty} style={cardStyle}>
-            <h3>{specialty}</h3>
-            {/* Al hacer click en la especialidad, llevamos al usuario a la página de técnicos */}
-            <Link to={`/technicians/${specialty.toLowerCase()}`} style={buttonStyle}>Ver Técnicos</Link>
+        <Link to="/registro-cliente">
+          <button>Registrar Cliente</button>
+        </Link>
+        <Link to="/registro-tecnico">
+          <button>Registrar Técnico</button>
+        </Link>
+      </div>
+
+      <h2>Técnicos disponibles</h2>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {technicians.map((technician) => (
+          <div
+            key={technician.id}
+            style={{
+              border: '1px solid #ddd',
+              padding: '20px',
+              margin: '10px',
+              width: '200px',
+              borderRadius: '8px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <h3>{technician.name}</h3>
+            <p>Especialidad: {technician.specialty}</p>
+            <p>Teléfono: {technician.phone}</p>
+            <p>
+              Calificación: {'⭐'.repeat(technician.rating)} ({technician.rating}/5)
+            </p>
+            <Link to={`/contactar-tecnico/${technician.id}`}>
+              <button>Contactar</button>
+            </Link>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-// Estilo básico para las tarjetas
-const cardStyle = {
-  display: 'inline-block',
-  margin: '20px',
-  padding: '20px',
-  border: '2px solid #4CAF50',
-  borderRadius: '8px',
-  textAlign: 'center',
-};
-
-// Estilo para los botones de "Ver Técnicos"
-const buttonStyle = {
-  display: 'inline-block',
-  marginTop: '10px',
-  padding: '10px 20px',
-  backgroundColor: '#4CAF50',
-  color: 'white',
-  textDecoration: 'none',
-  borderRadius: '5px',
-};
 
 export default Home;
