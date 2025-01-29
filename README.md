@@ -10,4 +10,4 @@ Currently, two official plugins are available:
 =======
 # OficiosYA
 app web para registrarse como tecnico para ser contratado, esto ayuda a la eleccion debido a sus calficaciones por servicio brindado.
->>>>>>> b22cdae137d431a1456f81e25e38ae0023369d4d
+ b22cdae137d431a1456f81e25e38ae0023369d4d
