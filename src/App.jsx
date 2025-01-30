@@ -1,12 +1,13 @@
 // src/App.jsx
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/header';
 import Home from './components/Home';
 import RegisterClient from './components/RegisterClient';
 import RegisterTechnician from './components/RegisterTechnician';
 import ContactTechnician from './components/ContactTechnician';  // Componente para contactar al técnico
-import ContactTechnician from './components/ContactTechnician'; // Asegúrate de que esté importado correctamente
+ 
 
 function App() {
   useEffect(() => {
