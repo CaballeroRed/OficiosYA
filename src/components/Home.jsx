@@ -6,6 +6,7 @@ function Home() {
   const [technicians, setTechnicians] = useState([]);
 
   useEffect(() => {
+    // Cargar los técnicos desde LocalStorage
     const storedTechnicians = JSON.parse(localStorage.getItem('technicians')) || [];
     setTechnicians(storedTechnicians);
   }, []);

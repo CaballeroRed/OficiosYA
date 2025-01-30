@@ -1,13 +1,11 @@
 // src/App.jsx
-
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/header';
 import Home from './components/Home';
 import RegisterClient from './components/RegisterClient';
 import RegisterTechnician from './components/RegisterTechnician';
-import ContactTechnician from './components/ContactTechnician';  // Componente para contactar al técnico
- 
+import ContactTechnician from './components/ContactTechnician'; // Componente para contactar al técnico
 
 function App() {
   useEffect(() => {
@@ -29,6 +27,7 @@ function App() {
       localStorage.setItem('technicians', JSON.stringify(technicians));
     }
   }, []); // Este useEffect se ejecutará solo una vez cuando la aplicación inicie
+
   return (
     <Router>
       <Header />
@@ -36,7 +35,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/registro-cliente" element={<RegisterClient />} />
         <Route path="/registro-tecnico" element={<RegisterTechnician />} />
-        <Route path="/contactar-tecnico/:id" element={<ContactTechnician />} />  {/* Nueva ruta */}
+        <Route path="/contactar-tecnico/:id" element={<ContactTechnician />} />
       </Routes>
     </Router>
   );
